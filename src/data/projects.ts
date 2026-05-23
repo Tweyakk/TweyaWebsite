@@ -17,7 +17,7 @@ export const projects: Project[] = [
     title: "balanch App",
     description: "Track Your Spending Habits : easy to monitoring & Offline Usage. The Data purely lives & isolated on your Device",
     technologies: ["React Native", "Expo", "Firebase", "Zustand"],
-    downloadUrl: "/files/balanch-release.apk",
+    downloadUrl: "/files/Balanch.apk",
     githubUrl: "https://github.com",
     status: "completed",
     category: "mobile",
