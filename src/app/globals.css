@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0f0f11;
+  --color-foreground: #e2e8f0;
+  --color-surface: #1a1a1c;
+  --color-surface-hover: #232325;
+  --color-glow: rgba(255, 255, 255, 0.15);
+  
+  --shadow-neo: 4px 4px 0px 0px rgba(255, 255, 255, 0.15);
+  --shadow-neo-hover: 6px 6px 0px 0px rgba(255, 255, 255, 0.25);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-glass-inset: inset 0 0 32px 0 rgba(255, 255, 255, 0.05);
+  
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: #0f0f11;
+    --foreground: #e2e8f0;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f11;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2c;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f41;
+}
+
+/* Utilities for Glassmorphism & Animations */
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-glass;
+  }
+  .neo-border {
+    @apply border border-white/20 shadow-neo transition-all duration-300;
+  }
+  .neo-border:hover {
+    @apply shadow-neo-hover -translate-y-1 -translate-x-1;
+  }
+  
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+}
