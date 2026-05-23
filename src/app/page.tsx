@@ -177,7 +177,7 @@ export default function Home() {
               You Can Find Me On
             </h2>
             <p className="text-lg text-white/60 mb-12 max-w-xl mx-auto">
-              Looking for a developer to build something extraordinary? My inbox is always open for new opportunities and collaborations.
+              You can find me on my socials media & Server, My inbox is always open for Questions.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-16">
