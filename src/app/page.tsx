@@ -46,12 +46,11 @@ export default function Home() {
 
             {/* Headline */}
             <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tighter leading-[0.9] text-surface">
-              DIGITAL<br />
+              TweyLab<br />
             </h1>
 
             <p className="max-w-xl text-lg md:text-2xl text-surface/80 font-medium leading-relaxed tracking-tight border-l-4 border-accent-gold pl-6">
-              I build premium web applications and digital products.
-              Focused on structured interfaces, bold typography, and exceptional user experience.
+              Just for My Passions and Hobbies as Solo Developer. Making small projects to practice my skills
             </p>
 
             <div className="flex flex-wrap items-center gap-6 pt-4">
@@ -94,10 +93,10 @@ export default function Home() {
           <div className="mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
             <div className="flex-1">
               <h2 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 text-surface">
-                INDEX
+                Archieves
               </h2>
               <p className="text-surface/60 max-w-xl text-xl font-medium tracking-tight border-l-4 border-surface/20 pl-6">
-                A structured collection of my recent projects, explorations, and digital products.
+                My Recent Projects and a lot more to come.
               </p>
             </div>
 
@@ -167,10 +166,10 @@ export default function Home() {
         >
           <GlassCard variant="light" className="p-12 md:p-20 text-center">
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 text-[#0A1228] uppercase">
-              Establish Connection
+              My Contact
             </h2>
             <p className="text-xl text-[#0A1228]/80 mb-16 max-w-2xl mx-auto font-medium leading-relaxed">
-              Ready to build something structured and premium? My inbox is always open. Let's create an exceptional digital product.
+              Hit me up on these socials. My inbox is always open
             </p>
 
             <div className="flex flex-wrap justify-center gap-8 mb-20">
@@ -199,8 +198,8 @@ export default function Home() {
 
             <div className="pt-12 border-t-4 border-[#0A1228]/10 text-left flex flex-col md:flex-row items-center justify-between gap-8">
               <div>
-                <p className="text-[#0A1228] font-bold text-2xl tracking-tighter uppercase mb-2">Support the Studio</p>
-                <p className="text-[#0A1228]/60 font-medium tracking-tight">Keep the servers running and the coffee brewing.</p>
+                <p className="text-[#0A1228] font-bold text-2xl tracking-tighter uppercase mb-2">Small Support Means Alot to Me</p>
+                <p className="text-[#0A1228]/60 font-medium tracking-tight">Keep the servers running by get some kentang.</p>
               </div>
               <a
                 href="https://trakteer.id/tweya/tip"
