@@ -37,23 +37,26 @@ export const AnimatedCursor = () => {
 
   return (
     <>
+      {/* Outer ring */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-white/30 pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border-2 border-surface pointer-events-none z-[9999] hidden md:block"
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
           scale: isHovering ? 1.5 : 1,
-          backgroundColor: isHovering ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
+          borderColor: isHovering ? "rgba(215, 211, 200, 0.8)" : "rgba(215, 211, 200, 0.3)",
         }}
-        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 28, mass: 0.5 }}
       />
+      {/* Inner dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[10000] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-2 h-2 bg-surface rounded-full pointer-events-none z-[10000] hidden md:block"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
+          scale: isHovering ? 0 : 1,
         }}
-        transition={{ type: "tween", duration: 0 }}
+        transition={{ type: "spring", stiffness: 500, damping: 28 }}
       />
     </>
   );

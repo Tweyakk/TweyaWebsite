@@ -14,8 +14,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Tweya",
-  description: "ordinary guy",
+  title: "Tweya | Solo Developer",
+  description: "My Portofolio",
 };
 
 export default function RootLayout({

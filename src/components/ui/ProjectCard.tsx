@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Code2, Download, Loader2 } from "lucide-react";
-import { GlassCard } from "./GlassCard";
 import { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -16,60 +15,54 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const [isDownloading, setIsDownloading] = useState(false);
 
   const handleDownloadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Determine if it's an internal file (starts with /)
-    const isInternal = project.downloadUrl?.startsWith("/");
-    
-    // Show premium interaction feedback
     setIsDownloading(true);
     setTimeout(() => {
       setIsDownloading(false);
-    }, 1500); // Revert after interaction
+    }, 1500);
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100, damping: 20 }}
+      className="group relative h-full w-full block"
     >
-      <motion.div
-        animate={{ y: [0, -5, 0] }}
-        transition={{ repeat: Infinity, duration: 4 + index * 0.5, ease: "easeInOut" }}
-        className="h-full"
+      <motion.div 
+        className="h-full flex flex-col p-6 bg-surface text-[#0A1228] border-4 border-[#0A1228] rounded-2xl shadow-neo transition-colors duration-300 relative z-10"
+        whileHover={{
+          x: -4,
+          y: -4,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
-        <GlassCard className="h-full flex flex-col p-6 group relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-        <div className="flex justify-between items-start mb-4">
-          <div className="flex items-center gap-2">
+        <div className="flex justify-between items-start mb-8">
+          <div className="flex flex-col gap-2">
             <span className={cn(
-              "px-2 py-1 text-xs font-medium rounded-md uppercase tracking-wider",
-              project.status === "completed" && "bg-emerald-500/20 text-emerald-300",
-              project.status === "in-progress" && "bg-blue-500/20 text-blue-300",
-              project.status === "planned" && "bg-amber-500/20 text-amber-300"
+              "self-start px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded border-2 border-[#0A1228] shadow-[2px_2px_0px_rgba(10,18,40,1)]",
+              project.status === "completed" && "bg-accent-stone text-[#0A1228]",
+              project.status === "in-progress" && "bg-accent-gold text-[#0A1228]",
+              project.status === "planned" && "bg-accent-silver text-[#0A1228]"
             )}>
-              {project.status}
+              {project.status === "completed" && "Completed"}
+              {project.status === "in-progress" && "In Progress"}
+              {project.status === "planned" && "Planned"}
             </span>
-            <span className="text-xs text-white/40 uppercase tracking-widest">{project.category}</span>
+            <span className="text-[10px] font-bold text-[#0A1228]/60 uppercase tracking-[0.2em]">{project.category}</span>
           </div>
           
-          <div className="flex gap-2 items-center relative z-20">
-            {/* Standard hover-visible buttons */}
-            <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors border border-transparent hover:border-white/10">
-                  <Code2 className="w-4 h-4" />
-                </a>
-              )}
-              {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noreferrer" className="p-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors border border-transparent hover:border-white/10">
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              )}
-            </div>
-
-            {/* Premium, always-visible Download button */}
+          <div className="flex gap-2 items-center">
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 bg-transparent hover:bg-[#0A1228]/5 rounded border-2 border-[#0A1228] transition-colors active:translate-y-1">
+                <Code2 className="w-5 h-5 text-[#0A1228]" />
+              </a>
+            )}
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 bg-transparent hover:bg-[#0A1228]/5 rounded border-2 border-[#0A1228] transition-colors active:translate-y-1">
+                <ExternalLink className="w-5 h-5 text-[#0A1228]" />
+              </a>
+            )}
             {project.downloadUrl && (
               <motion.a 
                 href={project.downloadUrl} 
@@ -77,79 +70,57 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 rel="noreferrer"
                 download={project.downloadUrl.startsWith("/")}
                 onClick={handleDownloadClick}
-                className="relative flex items-center justify-center p-[10px] rounded-full overflow-hidden bg-white/5 border border-white/20 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group/btn ml-2"
-                whileHover={{ scale: 1.15, y: -2 }}
+                className="flex items-center justify-center w-10 h-10 bg-[#0A1228] text-surface hover:bg-[#0F172A] rounded border-2 border-[#0A1228] shadow-[2px_2px_0px_rgba(10,18,40,1)] active:translate-y-1 active:shadow-none ml-2"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 15 }}
               >
-                {/* Idle rotating energy effect (conic gradient) */}
-                <motion.div 
-                  className="absolute inset-[-150%] z-0"
-                  animate={{ rotate: 360 }}
-                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                  style={{
-                    background: "conic-gradient(from 0deg, rgba(255,255,255,0) 70%, rgba(255,255,255,0.4) 100%)",
-                  }}
-                />
-                
-                {/* Inner glass masking layer */}
-                <div className="absolute inset-[1px] bg-black/60 backdrop-blur-xl rounded-full z-10 transition-colors duration-300 group-hover/btn:bg-black/40" />
-                
-                {/* Pulse glow on hover */}
-                <div className="absolute inset-0 rounded-full opacity-0 group-hover/btn:opacity-100 shadow-[0_0_20px_rgba(255,255,255,0.3),inset_0_0_15px_rgba(255,255,255,0.2)] transition-opacity duration-300 z-10" />
-
-                {/* Animated Icon */}
-                <motion.div
-                  className="relative z-20 flex items-center justify-center"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <AnimatePresence mode="wait">
-                    {isDownloading ? (
-                      <motion.div
-                        key="loading"
-                        initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
-                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                        exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <Loader2 className="w-[18px] h-[18px] text-white animate-spin" />
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="download"
-                        initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
-                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                        exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <Download className="w-[18px] h-[18px] text-white" />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                <AnimatePresence mode="wait">
+                  {isDownloading ? (
+                    <motion.div
+                      key="loading"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="download"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Download className="w-4 h-4" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.a>
             )}
           </div>
         </div>
 
-        <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/50 transition-all">
+        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#0A1228] leading-tight tracking-tight">
           {project.title}
         </h3>
-        
-        <p className="text-white/60 text-sm mb-6 flex-grow leading-relaxed">
+      
+        <p className="text-[#0A1228]/80 text-sm md:text-base mb-10 flex-grow font-medium leading-relaxed">
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-2 mt-auto relative z-10">
+        <div className="flex flex-wrap gap-2 mt-auto relative z-10 pt-6 border-t-2 border-[#0A1228]/10">
           {project.technologies.map((tech) => (
-            <span key={tech} className="px-2.5 py-1 text-xs bg-black/40 border border-white/10 rounded-md text-white/70">
+            <span key={tech} className="px-3 py-1 text-xs font-bold uppercase bg-transparent border-2 border-[#0A1228] text-[#0A1228]">
               {tech}
             </span>
           ))}
         </div>
-      </GlassCard>
       </motion.div>
+      
+      {/* Structural base for hover effect */}
+      <div className="absolute inset-0 bg-[#0A1228] rounded-2xl z-0" />
     </motion.div>
   );
 };

@@ -1,24 +1,46 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0f0f11;
-  --color-foreground: #e2e8f0;
-  --color-surface: #1a1a1c;
-  --color-surface-hover: #232325;
-  --color-glow: rgba(255, 255, 255, 0.15);
+  /* === PREMIUM DARK NEOBRUTALISM PALETTE === */
+  --color-background: #0A1228;    /* Midnight Blue */
+  --color-foreground: #E5E1D8;    /* Light Stone */
+  --color-surface: #D7D3C8;       /* Glossy Cream Grey */
+  --color-surface-hover: #E5E1D8; /* Light Stone */
+  --color-surface-dark: #0F172A;  /* Deep Navy */
   
-  --shadow-neo: 4px 4px 0px 0px rgba(255, 255, 255, 0.15);
-  --shadow-neo-hover: 6px 6px 0px 0px rgba(255, 255, 255, 0.25);
-  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --shadow-glass-inset: inset 0 0 32px 0 rgba(255, 255, 255, 0.05);
+  --color-border: #0A1228;        /* Dark border for surfaces */
+  --color-border-light: rgba(215, 211, 200, 0.2);
+
+  /* Primary Accents */
+  --color-primary: #FDFBF7;       /* Electric Cream */
+  --color-primary-hover: #FFFFFF;
   
+  --color-secondary: #D4AF37;     /* Soft Gold */
+  --color-secondary-hover: #E5C158;
+
+  /* Highlight Accents */
+  --color-accent-gold: #D4AF37;
+  --color-accent-silver: #A0AAB2;
+  --color-accent-stone: #E5E1D8;
+
+  /* Hard Neobrutalist Shadows */
+  --shadow-neo: 6px 6px 0px rgba(10, 18, 40, 0.9);
+  --shadow-neo-hover: 10px 10px 0px rgba(10, 18, 40, 0.9);
+  --shadow-neo-active: 2px 2px 0px rgba(10, 18, 40, 0.9);
+  
+  --shadow-neo-light: 4px 4px 0px rgba(215, 211, 200, 0.8);
+  --shadow-neo-light-hover: 6px 6px 0px rgba(215, 211, 200, 0.8);
+  
+  --shadow-neo-primary: 6px 6px 0px rgba(212, 175, 55, 0.5);
+
+  /* Font */
   --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
   :root {
-    --background: #0f0f11;
-    --foreground: #e2e8f0;
+    --background: #0A1228;
+    --foreground: #E5E1D8;
   }
 }
 
@@ -28,49 +50,33 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   scroll-behavior: smooth;
+  /* Add subtle grain/noise globally */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
 }
 
-/* Custom Scrollbar */
+/* Premium Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f0f11;
+  background: #0A1228;
+  border-left: 2px solid rgba(215, 211, 200, 0.1);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2c;
-  border-radius: 4px;
+  background: #D7D3C8;
+  border: 2px solid #0A1228;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f41;
+  background: #E5E1D8;
 }
 
-/* Utilities for Glassmorphism & Animations */
+/* === NEOBRUTALIST UTILITIES === */
 @layer utilities {
-  .glass-panel {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-glass;
+  .neo-panel {
+    @apply bg-surface text-[#0A1228] border-4 border-[#0A1228] rounded-2xl shadow-neo;
   }
-  .neo-border {
-    @apply border border-white/20 shadow-neo transition-all duration-300;
-  }
-  .neo-border:hover {
-    @apply shadow-neo-hover -translate-y-1 -translate-x-1;
-  }
-  
-  @keyframes blob {
-    0% { transform: translate(0px, 0px) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-20px, 20px) scale(0.9); }
-    100% { transform: translate(0px, 0px) scale(1); }
-  }
-  .animate-blob {
-    animation: blob 7s infinite;
-  }
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-  
-  @keyframes shimmer {
-    100% { transform: translateX(100%); }
+
+  .neo-panel-dark {
+    @apply bg-surface-dark text-foreground border-2 border-surface/20 rounded-2xl shadow-neo-light;
   }
 }
