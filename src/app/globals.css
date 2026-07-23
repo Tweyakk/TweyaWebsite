@@ -2,7 +2,7 @@
 
 @theme {
   /* === PREMIUM DARK NEOBRUTALISM PALETTE === */
-  --color-background: #0A1228;    /* Midnight Blue */
+  --color-background: #0C0908;    /* Dark Brown Base */
   --color-foreground: #E5E1D8;    /* Light Stone */
   --color-surface: #D7D3C8;       /* Glossy Cream Grey */
   --color-surface-hover: #E5E1D8; /* Light Stone */
@@ -39,19 +39,19 @@
 
 @layer base {
   :root {
-    --background: #0A1228;
+    --background: #0C0908;
     --foreground: #E5E1D8;
   }
 }
 
 body {
-  background: var(--background);
+  background: #0C0908;
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
   scroll-behavior: smooth;
   /* Add subtle grain/noise globally */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
 }
 
 /* Premium Scrollbar */
@@ -59,12 +59,13 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A1228;
-  border-left: 2px solid rgba(215, 211, 200, 0.1);
+  background: #0C0908;
+  border-left: 2px solid rgba(215, 211, 200, 0.08);
 }
 ::-webkit-scrollbar-thumb {
-  background: #D7D3C8;
-  border: 2px solid #0A1228;
+  background: rgba(215, 211, 200, 0.5);
+  border: 2px solid #0C0908;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #E5E1D8;
