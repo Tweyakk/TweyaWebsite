@@ -25,27 +25,16 @@ export default function Home() {
     <>
       {/* HERO SECTION */}
       <section id="home" className="min-h-screen flex items-center justify-center pt-24 px-6 relative z-10">
-        <div className="max-w-6xl w-full flex flex-col md:flex-row items-center gap-16 relative">
+        <div className="max-w-3xl w-full flex flex-col items-center relative">
           {/* Main Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
-            className="flex-1 flex flex-col items-start space-y-10"
+            className="flex-1 flex flex-col items-center space-y-10 w-full"
           >
-            {/* Status badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center gap-3 px-5 py-2.5 bg-surface text-[#0A1228] border-2 border-[#0A1228] shadow-[4px_4px_0px_rgba(215,211,200,0.2)] rounded-md"
-            >
-              <div className="w-3 h-3 bg-accent-gold border border-[#0A1228] rounded-full animate-pulse" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase">Solo Projects</span>
-            </motion.div>
-
             {/* Headline */}
-            <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tighter leading-[0.9] text-surface">
+            <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tighter leading-[0.9] text-surface text-center">
               TweyLab<br />
             </h1>
 
@@ -53,7 +42,7 @@ export default function Home() {
               Just for My Passions and Hobbies as Solo Developer. Making small projects to practice my skills
             </p>
 
-            <div className="flex flex-wrap items-center gap-6 pt-4">
+            <div className="flex flex-wrap justify-center items-center gap-6 pt-4">
               <a href="#projects">
                 <NeoButton variant="primary" size="lg">
                   Explore Work <ArrowRight className="w-5 h-5 ml-2" />
@@ -64,24 +53,6 @@ export default function Home() {
                   Initialize Contact <Terminal className="w-5 h-5 ml-2" />
                 </NeoButton>
               </a>
-            </div>
-          </motion.div>
-
-          {/* Editorial Decorative Elements */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:block relative w-[400px] h-[500px]"
-          >
-            <div className="absolute top-10 right-10 w-full h-full bg-accent-gold border-4 border-[#0A1228] shadow-neo rounded-2xl rotate-3" />
-            <div className="absolute top-0 right-0 w-full h-full bg-surface border-4 border-[#0A1228] shadow-neo rounded-2xl -rotate-2 flex flex-col justify-between p-8">
-              <div className="w-16 h-16 bg-[#0A1228] rounded-full" />
-              <div className="space-y-4">
-                <div className="w-full h-4 bg-[#0A1228]/20 rounded-full" />
-                <div className="w-3/4 h-4 bg-[#0A1228]/20 rounded-full" />
-                <div className="w-1/2 h-4 bg-[#0A1228]/20 rounded-full" />
-              </div>
             </div>
           </motion.div>
         </div>
